@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>treeDemo</title>
+ <link rel="stylesheet" type="text/css" href="../../script/lib/bootstrap/css/bootstrap.css">
+ <link rel="stylesheet" type="text/css" href="../../script/func/easy-bootstrap/css/easy-bootstrap.css">
+</head>
+<body>
+<div id="tree"></div>  
+<script type="text/javascript" src="../../script/lib/jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="../../script/lib/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="../../script/func/easy-bootstrap/js/easy-bootstrap-tree.js"></script>
+<script type="text/javascript">
+var tree = $("#tree").tree({
+	url:'./treeData.json',
+	onDblClickRow:function(row){
+		alert(row.name);
+	},
+	title:'treegridDemo'
+});
+
+function text(){
+	alert("ceshi");
+}
+</script>
+</body>
+</html>

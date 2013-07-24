@@ -1,0 +1,73 @@
+{"rows":[{
+    "id":1,
+    "text":"C",
+    "size":"",
+    "date":"02/19/2010",
+    "children":[{
+        "id":2,
+        "text":"Program Files",
+        "size":"120 MB",
+        "date":"03/20/2010",
+        "children":[{
+            "id":21,
+            "text":"Java",
+            "size":"",
+            "date":"01/13/2010",
+            "state":"closed",
+            "children":[{
+                "id":211,
+                "text":"java.exe",
+                "size":"142 KB",
+                "date":"01/13/2010"
+            },{
+                "id":212,
+                "text":"jawt.dll",
+                "size":"5 KB",
+                "date":"01/13/2010"
+            }]
+        },{
+            "id":22,
+            "text":"MySQL",
+            "size":"",
+            "date":"01/13/2010",
+            "state":"closed",
+            "children":[{
+                "id":221,
+                "text":"my.ini",
+                "size":"10 KB",
+                "date":"02/26/2009"
+            },{
+                "id":222,
+                "text":"my-huge.ini",
+                "size":"5 KB",
+                "date":"02/26/2009"
+            },{
+                "id":223,
+                "text":"my-large.ini",
+                "size":"5 KB",
+                "date":"02/26/2009"
+            }]
+        }]
+    },{
+        "id":3,
+        "text":"eclipse",
+        "size":"",
+        "date":"01/20/2010",
+        "children":[{
+            "id":31,
+            "text":"eclipse.exe",
+            "size":"56 KB",
+            "date":"05/19/2009"
+        },{
+            "id":32,
+            "text":"eclipse.ini",
+            "size":"treegrid.html KB",
+            "date":"04/20/2010"
+        },{
+            "id":33,
+            "text":"notice.html",
+            "size":"7 KB",
+            "date":"03/17/2005"
+        }]
+    }]
+}]}

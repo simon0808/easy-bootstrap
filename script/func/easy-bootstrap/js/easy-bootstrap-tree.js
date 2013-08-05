@@ -124,6 +124,15 @@
 		getSelected:function(){
 			return this.options.selectedRow;
 		},
+        getParent:function(){
+            var selectNode = this.options.selectedRow;
+            //todo 根据选择的节点在 this.options.rows 中找到该节点的父节点
+        },
+        getChildren:function(){
+            var selectNode = this.options.selectedRow;
+            //todo 首先要判断
+            return selectNode.childrenList;
+        },
 		setSelected:function(e){
 			var tree = this;
 			var item = $(e.target).closest("span")

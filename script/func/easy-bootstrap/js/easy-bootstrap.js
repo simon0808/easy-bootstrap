@@ -15,7 +15,6 @@
 	    this.$element = $(element);
 	    this.init();
 	    var that = this;
-	    this.mulSelectRow = [];
 	    $(element).on('click', "tr[data-rowid]", function(e){that.trclickStyle(e);that.setSelected(e);})
 	    		  .on('click', "tr[data-rowid] td i", function(e){that.fold(e);})
 	    		  .on('click', "tr[data-rowid] td input[type='checkbox']", function(e){that.checkbox(e);})
@@ -60,12 +59,12 @@
 			$.ajax({
 				type: "get",
 				url: this.options.url,
-				success: function(data, textStatus){
+				success: function(data){
 					tgrid.options.rows = data.rows;
 				},
 				data:this.options.param,
 				dataType:"JSON",
-				async:false,
+				async:false
 			});
 			return result;
 		},
@@ -242,7 +241,7 @@
 						},
 						data:pa,
 						dataType:"JSON",
-						async:false,
+						async:false
 					});
 				}
 			}
@@ -352,7 +351,7 @@
 		async:false,
 		asyncUrl:"",
 		onClick:null,
-		checkBox:false,
+		checkBox:false
 	};
 	
 	$(window).on('load', function(){
@@ -403,7 +402,7 @@
 			var op = this.options
 				,item = $(e.target).closest("span")
 				,id = item.data('nodeid');
-			this.getDataById(id);
+			this.options.selectedRow = this.getDataById(id);
 		
 			if(op.selectedRow.state == "open") {
 				op.selectedRow.state = "closed";
@@ -421,7 +420,7 @@
 						},
 						data:pa,
 						dataType:"JSON",
-						async:false,
+						async:false
 					});
 				}
 			}
@@ -432,12 +431,12 @@
 			$.ajax({
 				type: "get",
 				url: this.options.url,
-				success:function(data, textStatus){
+				success:function(data){
 					tree.options.rows = data.rows;
 				},
 				data:this.options.param,
 				dataType:"JSON",
-				async:false,
+				async:false
 			});
 			return true;
 		},
@@ -472,8 +471,8 @@
 						html += this.text + "</span>";
 						level++;
 						this.state && this.state == "closed"
-							? creatUL(this.children,"hide",id*10)
-							: creatUL(this.children,isShow,id*10);
+							? creatUL(this.children,"hide",id*1000)
+							: creatUL(this.children,isShow,id*1000);
 						level--;
 						html = html + "</li>";
 					}
@@ -496,7 +495,7 @@
 			var tree = this;
 			var item = $(e.target).closest("span")
 				,id = item.data('nodeid');
-			this.getDataById(id);
+			this.options.selectedRow = this.getDataById(id);
 			if(tree.options.onClickRow){
 				tree.options.onClickRow(tree.options.selectedRow);
 			}
@@ -506,7 +505,7 @@
 			var item = $(e.target).closest("span")
 				,id = item.data('nodeid');
 			
-			this.getDataById(id);
+			this.options.selectedRow = this.getDataById(id);
 			
 			if(tree.options.onDblClickRow){
 				tree.options.onDblClickRow(tree.options.selectedRow);
@@ -519,18 +518,25 @@
 			this.options.toolbar[index].handler();
 		},
 		getDataById:function(id){
-			var op = this.options;
-			if(id){
-				(id = id.toString());
-				!function getRow(data){
-					var arr = id.split("");
-					for(var i=0,j=id.length; i<j; i++){
-						var k = parseInt(arr[i]) - 1;
-						data[k] && (op.selectedRow = data[k]) && (data = data[k].children);
-					}
-				}(op.rows);
-			}
-		},
+            var op = this.options
+                , rowdata = null;
+            id = parseInt(id);
+
+            !function getRow(data){
+                var arr = [];
+                while(id >= 1){
+                    var t = id%1000;
+                    arr.push(t);
+                    id = Math.floor(id/1000);
+                }
+                for(var i = arr.length - 1; i >= 0 ; i--){
+                    var k = arr[i] - 1;
+                    data[k]&&(rowdata = data[k])&&(data = data[k].children);
+                }
+            }(op.rows);
+
+            return rowdata;
+		}
 	};
 	
 	$.fn.tree = function (option,param) {
